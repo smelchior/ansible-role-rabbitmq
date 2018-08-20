@@ -1,4 +1,6 @@
 # RabbitMQ Ansible Role
+Forked from https://github.com/jasonroyle/ansible-role-rabbitmq on 2018-08-20
+to support EL 7 and RabbitMQ 3.7+.
 
 ## Version
 
@@ -9,7 +11,7 @@ See:
 Set the `rabbitmq_version` variable to define the version of RabbitMQ to install.
 
 ```yaml
-rabbitmq_version: 3.6.6-1
+rabbitmq_version: '3.7.7'
 ```
 
 ## Users
@@ -23,9 +25,9 @@ Set the `rabbitmq_users` variable to define an array of present users.
 
 ```yaml
 rabbitmq_users:
-- user: admin
-  password: admin
-  tags: administrator
+  - user: admin
+    password: admin
+    tags: administrator
 ```
 
 | parameter      | required | default | choices | comments |
@@ -44,7 +46,7 @@ Set the `rabbitmq_users_absent` variable to define an array of absent users.
 
 ```yaml
 rabbitmq_users_absent:
-- guest
+  - guest
 ```
 
 ## Virtual Hosts
@@ -58,10 +60,10 @@ Set the `rabbitmq_vhosts` variable to define an array of present virtual hosts.
 
 ```yaml
 rabbitmq_vhosts:
-- /one
-- name: /two
-  node: rabbit
-  tracing: no
+  - /one
+  - name: /two
+    node: rabbit
+    tracing: no
 ```
 
 | parameter  | required | default | choices                          | comments |
@@ -76,7 +78,7 @@ Set the `rabbitmq_vhosts_absent` variable to define an array of absent virtual h
 
 ```yaml
 rabbitmq_vhosts_absent:
-- /vhost
+  - /vhost
 ```
 
 ## Plugins
@@ -90,9 +92,9 @@ Set the `rabbitmq_plugins` variable to define an array of enabled plugins.
 
 ```yaml
 rabbitmq_plugins:
-- rabbitmq_management
-- name: rabbitmq_delayed_message_exchange
-  url: http://www.rabbitmq.com/community-plugins/v3.6.x/rabbitmq_delayed_message_exchange-0.0.1.ez
+  - rabbitmq_management
+  - name: rabbitmq_delayed_message_exchange
+    url: http://www.rabbitmq.com/community-plugins/v3.6.x/rabbitmq_delayed_message_exchange-0.0.1.ez
 ```
 
 | parameter | required | default | choices | comments            |
@@ -106,7 +108,7 @@ Set the `rabbitmq_plugins_disabled` variable to disable plugins.
 
 ```yaml
 rabbitmq_plugins_disabled:
-- rabbitmq_management
+  - rabbitmq_management
 ```
 
 ## Configuration
@@ -120,9 +122,9 @@ Set the `rabbitmq_config` variable to define the configuration.
 
 ```yaml
 rabbitmq_config:
-- rabbit:
-  - tcp_listeners:
-    - "'0.0.0.0'": 5671
+  - rabbit:
+    - tcp_listeners:
+      - "'0.0.0.0'": 5671
 ```
 
 ## Cluster
@@ -143,17 +145,6 @@ Set the `rabbitmq_erlang_cookie` variable to define the Erlang cookie.
 
 ```yaml
 rabbitmq_erlang_cookie: g9avtqdzdm2p5oe9
-```
-
-### IP Address
-
-Set the `rabbitmq_cluster_ip_address` host variable to define the private IP address of each host.
-
-```
-[queue]
-123.123.123.1 rabbitmq_cluster_ip_address=321.321.321.1
-123.123.123.2 rabbitmq_cluster_ip_address=321.321.321.2
-123.123.123.3 rabbitmq_cluster_ip_address=321.321.321.3
 ```
 
 ## License
