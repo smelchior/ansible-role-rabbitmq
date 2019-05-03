@@ -2,15 +2,18 @@
   yum_repository:
     name: rabbitmq-erlang
     description: Erlang
-    baseurl: https://dl.bintray.com/rabbitmq/rpm/erlang/21/el/7
-    gpgcheck: true
-    gpgkey: https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc
+    baseurl: https://packagecloud.io/rabbitmq/erlang/el/7/$basearch
+    gpgcheck: false
+    gpgkey: https://packagecloud.io/rabbitmq/erlang/gpgkey
+    repo_gpgcheck: true
 - name: Configure RabbitMQ Yum repo
   yum_repository:
     name: rabbitmq
     description: RabbitMQ
-    baseurl: https://dl.bintray.com/rabbitmq/rpm/rabbitmq-server/v3.7.x/el/7/
+    baseurl: https://packagecloud.io/rabbitmq/rabbitmq-server/el/7/$basearch
     gpgcheck: false
+    repo_gpgcheck: true
+    gpgkey: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
 - name: Install RabbitMQ
   package:
     name: rabbitmq-server-{{ rabbitmq_version }}
