@@ -5,7 +5,7 @@
 - include: configure.yml
 
 - include: configure-cluster.yml
-  when: rabbitmq_cluster
+  when: rabbitmq_cluster|bool
 
 - name: start rabbitmq server
   service:
@@ -20,4 +20,4 @@
 - include: plugins.yml
 
 - include: cluster.yml
-  when: rabbitmq_cluster and rabbitmq_nodename != rabbitmq_cluster_master
+  when: rabbitmq_cluster|bool and rabbitmq_nodename != rabbitmq_cluster_master
