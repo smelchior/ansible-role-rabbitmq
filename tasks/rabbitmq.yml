@@ -1,6 +1,6 @@
 ---
 - name: include rabbitmq installation tasks
-  include: install.yml
+  include: install-{{ ansible_os_family }}.yml
 
 - include: configure.yml
 
@@ -11,7 +11,7 @@
   service:
     name: rabbitmq-server
     enabled: true
-    state: started
+    state: restarted
 
 - include: vhosts.yml
 
