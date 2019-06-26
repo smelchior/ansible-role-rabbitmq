@@ -6,3 +6,4 @@
     owner: rabbitmq
     group: rabbitmq
     mode: 0400
+  notify: restart rabbitmq-server

@@ -7,11 +7,11 @@
 - include: configure-cluster.yml
   when: rabbitmq_cluster|bool
 
-- name: start rabbitmq server
+- name: assure rabbitmq-server is started
   service:
     name: rabbitmq-server
     enabled: true
-    state: restarted
+    state: started
 
 - include: vhosts.yml
 
