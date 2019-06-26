@@ -137,7 +137,7 @@ Set the `rabbitmq_cluster` variable to enable clustering.
 
 As the above clustering documentation is pretty hard to grasp I suggest reading of
 [https://computingforgeeks.com/how-to-configure-rabbitmq-cluster-on-ubuntu-18-04-lts/](https://computingforgeeks.com/how-to-configure-rabbitmq-cluster-on-ubuntu-18-04-lts/)
-for quick start. And then defined minimum varaibles as below where the
+for quick start. And then defined minimum variable as below where the
   `rabbitmq1` is the short hostname of the master node.
 
 ```yaml
@@ -145,6 +145,14 @@ rabbitmq_cluster: yes
 # shortname dns only
 rabbitmq_cluster_master: "rabbit@rabbitmq1"
 ```
+
+Please note that the default behaviour is:
+- The first node of the host group is the master
+- The ha policy is to replicate the queue for all nodes
+- Replacing non-master nodes is supported - just destroy the non-master node and
+  re-launch.
+- Switching master node to other node is not supported unless you have to do it
+  manually or rebuild the whole cluster.
 
 ### Erlang Cookie
 
