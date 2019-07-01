@@ -1,13 +1,13 @@
 ---
 - name: include rabbitmq installation tasks
-  include: install.yml
+  include: install-{{ ansible_os_family }}.yml
 
 - include: configure.yml
 
 - include: configure-cluster.yml
-  when: rabbitmq_cluster
+  when: rabbitmq_cluster|bool
 
-- name: start rabbitmq server
+- name: assure rabbitmq-server is started
   service:
     name: rabbitmq-server
     enabled: true
@@ -20,4 +20,4 @@
 - include: plugins.yml
 
 - include: cluster.yml
-  when: rabbitmq_cluster and rabbitmq_nodename != rabbitmq_cluster_master
+  when: rabbitmq_cluster|bool and rabbitmq_nodename != rabbitmq_cluster_master
