@@ -5,6 +5,6 @@
     state: restarted
 
 - name: remove non-master-node on master
-  shell: "rabbitmqctl forget_cluster_node rabbit@{{ inventory_hostname_short }}"
+  command: "rabbitmqctl forget_cluster_node rabbit@{{ inventory_hostname_short }}"
   delegate_to: "{{ rabbitmq_cluster_master_node }}"
   ignore_errors: yes
