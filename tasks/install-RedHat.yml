@@ -4,8 +4,8 @@
     description: Erlang
     baseurl: '{{ erlang_yum_baseurl }}'
     gpgcheck: '{{ erlang_yum_gpgcheck }}'
-    gpgkey: '{{ erlang_yum_repo_gpgkey }}'
     repo_gpgcheck: '{{ erlang_yum_repo_gpgcheck }}'
+    gpgkey: '{{ erlang_yum_repo_gpgkey | default(omit, true) }}'
 - name: Configure RabbitMQ Yum repo
   yum_repository:
     name: rabbitmq
@@ -13,7 +13,7 @@
     baseurl: '{{ rabbitmq_yum_baseurl }}'
     gpgcheck: '{{ rabbitmq_yum_gpgcheck }}'
     repo_gpgcheck: '{{ rabbitmq_yum_repo_gpgcheck }}'
-    gpgkey: '{{ rabbitmq_yum_repo_gpgcheck }}'
+    gpgkey: '{{ rabbitmq_yum_repo_gpgkey | default(omit, true) }}'
 - name: Install RabbitMQ
   package:
     name: rabbitmq-server-{{ rabbitmq_version }}
