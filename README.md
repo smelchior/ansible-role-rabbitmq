@@ -11,7 +11,7 @@ See:
 Set the `rabbitmq_version` variable to define the version of RabbitMQ to install.
 
 ```yaml
-rabbitmq_version: '3.7.7'
+rabbitmq_version: '3.8.1'
 ```
 
 ## Users
@@ -115,16 +115,21 @@ rabbitmq_plugins_disabled:
 
 See:
 
-- [Pico Trading - Config Encoder Macros](https://github.com/picotrading/config-encoder-macros)
-- [RabbitMQ - Configuration File](https://www.rabbitmq.com/configure.html#configuration-file)
+- [RabbitMQ - Configuration](https://www.rabbitmq.com/configure.html)
 
 Set the `rabbitmq_config` variable to define the configuration.
 
 ```yaml
 rabbitmq_config:
-  - rabbit:
-    - tcp_listeners:
-      - "'0.0.0.0'": 5671
+  listeners.tcp.default: 5672
+```
+
+Set the `rabbitmq_env` variable to define the environment variables. Note that the keys should not contain the
+"RABBITMQ_" prefix.
+
+```yaml
+rabbitmq_env:
+  DIST_PORT: 25672
 ```
 
 ## Cluster

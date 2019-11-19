@@ -1,0 +1,5 @@
+{{ ansible_managed | comment }}
+
+{% for item in (rabbitmq_env | dict2items | sort(attribute='key')) %}
+{{ item.key }}={{ item.value | to_json }}
+{% endfor %}
