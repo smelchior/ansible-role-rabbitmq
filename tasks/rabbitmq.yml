@@ -2,6 +2,8 @@
 - name: include rabbitmq installation tasks
   include: install-{{ ansible_os_family }}.yml
 
+- include: plugins.yml
+
 - include: configure.yml
 
 - include: configure-cluster.yml
@@ -16,8 +18,6 @@
 - include: vhosts.yml
 
 - include: users.yml
-
-- include: plugins.yml
 
 - include: cluster.yml
   when: rabbitmq_cluster|bool and rabbitmq_nodename != rabbitmq_cluster_master
