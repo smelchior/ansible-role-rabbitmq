@@ -5,7 +5,7 @@
 
 - name: Add apt repository for erlang
   apt_repository:
-    repo: "deb http://dl.bintray.com/rabbitmq-erlang/debian {{ ansible_distribution_release }} erlang-{{ erlang_version|default('22.x') }}"
+    repo: "deb http://dl.bintray.com/rabbitmq-erlang/debian {{ rabbitmq_apt_distribution_release }} erlang-{{ erlang_version|default('22.x') }}"
     filename: rabbitmq_erlang
     update_cache: no
 
@@ -19,7 +19,7 @@
 
 - name: Add apt repository for rabbitmq
   apt_repository:
-    repo: "deb https://dl.bintray.com/rabbitmq/debian {{ ansible_distribution_release }} main"
+    repo: "deb https://dl.bintray.com/rabbitmq/debian {{ rabbitmq_apt_distribution_release }} main"
     filename: rabbitmq_main
     update_cache: yes
 
