@@ -18,11 +18,11 @@
 - name: start rabbitmq app
   command: rabbitmqctl start_app
 
-- name: "Configure HA policy {{ item.name }}"
+- name: "Configure HA policy"
   rabbitmq_policy:
     name: "{{ item.name }}"
     pattern: "{{ item.pattern }}"
+    vhost: "{{ item.vhost }}"
     tags: "{{ item.tags }}"
-    vhost: "{{ item.tags }}"
-  when: rabbitmq_mirroring_policy | default(false)
-  with_items: rabbitmq_mirroring_policy
+  when: rabbitmq_mirroring_polices | default(false)
+  loop: "{{ rabbitmq_mirroring_polices |  default([]) | flatten(levels=1) }}"
