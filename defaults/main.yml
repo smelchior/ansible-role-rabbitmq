@@ -33,3 +33,9 @@ rabbitmq_yum_repo_gpgkey: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgke
 rabbitmq_yum_repo_gpgcheck: true
 
 rabbitmq_apt_distribution_release : "{{ ansible_distribution_release }}"
+rabbitmq_mirroring_polices:
+  - name: ha
+    pattern: .*
+    tags:
+      ha-mode: all
+    vhost: /

@@ -18,5 +18,11 @@
 - name: start rabbitmq app
   command: rabbitmqctl start_app
 
-- name: Configure HA policy
-  command: rabbitmqctl set_policy ha-all "." '{"ha-mode":"all"}'
+- name: "Configure HA policy {{ item.name }}"
+  rabbitmq_policy:
+    name: "{{ item.name }}"
+    pattern: "{{ item.pattern }}"
+    tags: "{{ item.tags }}"
+    vhost: "{{ item.tags }}"
+  when: rabbitmq_mirroring_policy | default(false)
+  with_items: rabbitmq_mirroring_policy
