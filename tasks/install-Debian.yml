@@ -8,6 +8,7 @@
     repo: "deb http://dl.bintray.com/rabbitmq-erlang/debian {{ rabbitmq_apt_distribution_release }} erlang-{{ erlang_version|default('22.x') }}"
     filename: rabbitmq_erlang
     update_cache: no
+  when: not (ansible_distribution == 'Ubuntu' and ansible_distribution_version == "20.04")
 
 - name: Set package erlang preference
   copy:
@@ -16,6 +17,7 @@
       Package: erlang*
       Pin: release o=Bintray
       Pin-Priority: 1000
+  when: not (ansible_distribution == 'Ubuntu' and ansible_distribution_version == "20.04")
 
 - name: Add apt repository for rabbitmq
   apt_repository:
